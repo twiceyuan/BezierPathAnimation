@@ -8,14 +8,14 @@
     android:orientation="vertical"
     tools:context="com.twiceyuan.bezierpathanimation.MainActivity">
 
-    <TextView
+    <com.twiceyuan.bezierpathanimation.DragTextView
         android:id="@+id/source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
         android:text="@string/source"/>
 
-    <TextView
+    <com.twiceyuan.bezierpathanimation.DragTextView
         android:id="@+id/target"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
