@@ -95,7 +95,12 @@ public class BezierHelper {
         if (mTimeInterpolator == null) {
             mTimeInterpolator = new AccelerateInterpolator();
         }
-        startInternal();
+        mSource.post(new Runnable() {
+            @Override
+            public void run() {
+                startInternal();
+            }
+        });
     }
 
     private void startInternal() {
@@ -104,7 +109,9 @@ public class BezierHelper {
         // (这个图片就是执行动画的图片，从开始位置出发，经过一个抛物线（贝塞尔曲线），移动到购物车里)
         final ImageView sourceShadow = new ImageView(mSource.getContext());
         sourceShadow.setImageBitmap(viewToBitmap(mSource));
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                mSource.getWidth(),
+                mSource.getHeight());
         mContainer.addView(sourceShadow, params);
 
         // 二、计算动画开始/结束点的坐标的准备工作
@@ -122,11 +129,11 @@ public class BezierHelper {
 
         // 三、正式开始计算动画开始/结束的坐标
         // 开始掉落的商品的起始点：商品起始点-父布局起始点+该商品图片的一半
-        float startX = startLoc[0] - parentLocation[0] + mSource.getWidth() / 2;
-        float startY = startLoc[1] - parentLocation[1] - mSource.getHeight() / 2;
+        float startX = startLoc[0] - parentLocation[0];
+        float startY = startLoc[1] - parentLocation[1];
 
         // 商品掉落后的终点坐标：购物车起始点-父布局起始点+购物车图片的1/5
-        float toX = endLoc[0] - parentLocation[0] + mTarget.getWidth() / 5;
+        float toX = endLoc[0] - parentLocation[0];
         float toY = endLoc[1] - parentLocation[1];
 
         // 四、计算中间动画的插值坐标（贝塞尔曲线）（其实就是用贝塞尔曲线来完成起终点的过程）

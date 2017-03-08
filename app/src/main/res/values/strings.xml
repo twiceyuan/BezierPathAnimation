@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">BezierPathAnimation</string>
-    <string name="source">source</string>
+    <string name="source">Source</string>
     <string name="target">Target</string>
 </resources>

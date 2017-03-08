@@ -10,17 +10,25 @@
 
     <com.twiceyuan.bezierpathanimation.DragTextView
         android:id="@+id/source"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_margin="40dp"
-        android:text="@string/source"/>
+        android:background="@drawable/ic_circle"
+        android:backgroundTint="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/source"
+        android:textColor="#ffffff"/>
 
     <com.twiceyuan.bezierpathanimation.DragTextView
         android:id="@+id/target"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="40dp"
-        android:text="@string/target"/>
+        android:background="@drawable/ic_circle"
+        android:backgroundTint="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/target"
+        android:textColor="#ffffff"/>
 
 </FrameLayout>

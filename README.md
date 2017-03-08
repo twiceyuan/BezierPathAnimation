@@ -17,5 +17,5 @@ BezierHelper.create()
 
 ## 效果
 
-![](art/sample.gif)
+![](art/sample.webp)
 
