@@ -24,11 +24,12 @@ public class BezierHelper {
 
     private View               mSource;
     private View               mTarget;
+    private Bitmap             mSpirit;
     private ViewGroup          mContainer;
     private TimeInterpolator   mTimeInterpolator;
     private OnCompleteListener mCompleteListener;
 
-    private int mDuration = 800;
+    private int mDuration = 500;
 
     private BezierHelper() {
     }
@@ -63,6 +64,11 @@ public class BezierHelper {
         return this;
     }
 
+    public BezierHelper setSpirit(Bitmap spirit) {
+        mSpirit = spirit;
+        return this;
+    }
+
     public BezierHelper setContainer(ViewGroup container) {
         mContainer = container;
         return this;
@@ -83,18 +89,27 @@ public class BezierHelper {
     }
 
     public void start() {
+
         if (mSource == null) {
             throw new BezierPathException("mSource");
         }
+
         if (mTarget == null) {
             throw new BezierPathException("mTarget");
         }
+
         if (mContainer == null) {
             throw new BezierPathException("mContainer");
         }
+
+        if (mSpirit == null) {
+            mSpirit = viewToBitmap(mSource);
+        }
+
         if (mTimeInterpolator == null) {
             mTimeInterpolator = new AccelerateInterpolator();
         }
+
         mSource.post(new Runnable() {
             @Override
             public void run() {
@@ -104,11 +119,12 @@ public class BezierHelper {
     }
 
     private void startInternal() {
+
         // 一、创造出执行动画的主题---ImageView
         // 代码 new 一个 ImageView ，图片资源是上面的 ImageView 的图片
         // (这个图片就是执行动画的图片，从开始位置出发，经过一个抛物线（贝塞尔曲线），移动到购物车里)
         final ImageView sourceShadow = new ImageView(mSource.getContext());
-        sourceShadow.setImageBitmap(viewToBitmap(mSource));
+        sourceShadow.setImageBitmap(mSpirit);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 mSource.getWidth(),
                 mSource.getHeight());
@@ -141,8 +157,8 @@ public class BezierHelper {
         Path path = new Path();
         // 移动到起始点（贝塞尔曲线的起点）
         path.moveTo(startX, startY);
-        // 使用二次萨贝尔曲线：注意第一个起始坐标越大，贝塞尔曲线的横向距离就会越大，一般按照下面的式子取即可
-        path.quadTo((startX + toX) / 2, startY, toX, toY);
+        // 使用二阶贝塞尔曲线：注意第一个起始坐标越大，贝塞尔曲线的横向距离就会越大，一般按照下面的式子取即可
+        path.quadTo((startX + toX) / 2, startY / 2, toX, toY);
         // mPathMeasure用来计算贝塞尔曲线的曲线长度和贝塞尔曲线中间插值的坐标，
         // 如果是true，path会形成一个闭环
         final PathMeasure mPathMeasure = new PathMeasure(path, false);

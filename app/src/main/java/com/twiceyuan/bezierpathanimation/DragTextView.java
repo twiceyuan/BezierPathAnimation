@@ -26,26 +26,20 @@ public class DragTextView extends android.support.v7.widget.AppCompatTextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         switch (event.getAction()) {
-
             case MotionEvent.ACTION_DOWN:
-
                 dX = getX() - event.getRawX();
                 dY = getY() - event.getRawY();
-                break;
-
+                return true;
             case MotionEvent.ACTION_MOVE:
-
                 animate()
                         .x(event.getRawX() + dX)
                         .y(event.getRawY() + dY)
                         .setDuration(0)
                         .start();
-                break;
+                return true;
             default:
                 return false;
         }
-        return true;
     }
 }

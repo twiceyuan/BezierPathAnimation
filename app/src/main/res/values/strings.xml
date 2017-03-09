@@ -2,4 +2,6 @@
     <string name="app_name">BezierPathAnimation</string>
     <string name="source">Source</string>
     <string name="target">Target</string>
+    <string name="use_button_as_spirit">使用按钮作为动态元素</string>
+    <string name="use_source_as_spirit">使用 Source 作为动态元素</string>
 </resources>

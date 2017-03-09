@@ -6,7 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:ignore="ButtonStyle"
     tools:context="com.twiceyuan.bezierpathanimation.MainActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_weight="1"
+            android:onClick="changeSpiritButton"
+            android:text="@string/use_button_as_spirit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_weight="1"
+            android:onClick="changeSpiritSource"
+            android:text="@string/use_source_as_spirit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
     <com.twiceyuan.bezierpathanimation.DragTextView
         android:id="@+id/source"
