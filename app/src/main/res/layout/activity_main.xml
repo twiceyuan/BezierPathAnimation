@@ -30,18 +30,18 @@
 
     </LinearLayout>
 
-    <com.twiceyuan.bezierpathanimation.DragTextView
+    <TextView
         android:id="@+id/source"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="40dp"
+        android:layout_margin="60dp"
         android:background="@drawable/ic_circle"
         android:backgroundTint="@color/colorAccent"
         android:gravity="center"
         android:text="@string/source"
         android:textColor="#ffffff"/>
 
-    <com.twiceyuan.bezierpathanimation.DragTextView
+    <TextView
         android:id="@+id/target"
         android:layout_width="80dp"
         android:layout_height="80dp"

@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
  * <p>
  * 绘制 Bezier 路径的工具类
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings("WeakerAccess,unused")
 public class BezierHelper {
 
     private View               mSource;
@@ -110,12 +110,7 @@ public class BezierHelper {
             mTimeInterpolator = new AccelerateInterpolator();
         }
 
-        mSource.post(new Runnable() {
-            @Override
-            public void run() {
-                startInternal();
-            }
-        });
+        startInternal();
     }
 
     private void startInternal() {
@@ -125,6 +120,8 @@ public class BezierHelper {
         // (这个图片就是执行动画的图片，从开始位置出发，经过一个抛物线（贝塞尔曲线），移动到购物车里)
         final ImageView sourceShadow = new ImageView(mSource.getContext());
         sourceShadow.setImageBitmap(mSpirit);
+
+        mSource.measure(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 mSource.getWidth(),
                 mSource.getHeight());

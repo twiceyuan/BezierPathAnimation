@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
                         .start();
             }
         });
+
+        DragHelper.attach(source);
+        DragHelper.attach(target);
     }
 
     public void changeSpiritButton(final View view) {
